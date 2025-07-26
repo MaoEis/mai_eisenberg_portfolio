@@ -1,0 +1,262 @@
+:root {
+  --backG: #f8f4e1;
+  --sun: #feba17;
+  --fontcol: #321400;
+  --hoovercol: #00ffff;
+  --accentcol: #335d75;
+  --swearGreen: #68ff47;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  font-family: "Raleway", sans-serif;
+  min-height: 100vh;
+  background-color: var(--backG);
+  color: var(--fontcol);
+  cursor: none !important;
+}
+
+.circle {
+  height: 24px;
+  width: 24px;
+  border-radius: 24px;
+  background-color: black;
+  box-shadow: 0 0 15px 1px rgba(255, 190, 0, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999999; /* so that it stays on top of all other elements */
+}
+
+.header-nav {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+}
+
+.header-nav a {
+  text-decoration: none;
+  color: var(--fontcol);
+  font-weight: 500;
+  font-size: 1.2em;
+  transition: color 0.3s ease;
+}
+
+.header-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: right;
+  font-size: 0.9em;
+}
+
+.header-nav li {
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.container {
+  position: sticky; /* Keep sun and text in view */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.sun {
+  width: 500px;
+  height: 500px;
+  background: var(--sun);
+  border-radius: 50%;
+  box-shadow: 0 0 200px 50px rgba(255, 190, 0, 0.8);
+  /* position: fixed; */
+  top: 50vh;
+  left: 50vw;
+  z-index: 5;
+}
+
+.text-animation {
+  font-size: 3em;
+  font-weight: bold;
+  color: var(--fontcol); /* Use the dark color from CSS variables */
+  text-align: center;
+  white-space: nowrap; /* Keep words on one line initially */
+  position: fixed;
+  top: 50vh; /* Center vertically in viewport */
+  /* left: 100vw; Start from left edge */
+  transform: translateY(-50%); /* Only center vertically */
+  z-index: 10; /* Ensure text is above the sun */
+  transition: none; /* Remove CSS transition, let JS handle it */
+}
+
+.text-animation .word {
+  display: inline-block; /* Allows individual animation */
+  opacity: 1; /* Make words visible for scroll animation */
+}
+
+.introApproach {
+  position: relative; /* Keep relative if you want to position children normally */
+  width: 100%;
+  height: 100vh; /* This makes it a full viewport section */
+  background: var(--sun); /* Background will be sun color after sun expands */
+  color: var(--fontcol);
+  font-size: 2em;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 20; /* Ensure it's above the sun (z-index: 5) */
+  margin-top: 0; /* Ensure no top margin */
+  padding-top: 0; /* Ensure no top padding */
+}
+
+.text-approach-animation {
+  position: fixed; /* Fixed positioning relative to viewport */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.8em;
+  font-weight: 900;
+  color: var(--fontcol);
+  opacity: 1; /* Make text visible */
+  width: 80%; /* Adjusted for better readability. Adjust as needed. */
+  max-width: 800px; /* Optional: cap max width for larger screens */
+  line-height: 1.4; /* Improve readability */
+  z-index: 21;
+  text-align: center; /* Center align the text */
+}
+
+.allSkills {
+  height: 60vh;
+  font-size: 3em;
+  color: var(--fontcol);
+  padding: 40px 0;
+}
+
+.skills {
+  padding: 20px 0;
+  white-space: nowrap;
+}
+
+.skill-title {
+  color: var(--accentcol); /* Uses the cyan color from your CSS variables */
+  font-weight: 300;
+  padding-right: 50px;
+}
+
+.designSkills {
+  position: relative;
+  left: 0%;
+  top: 70%;
+}
+
+.devSkills {
+  position: relative;
+  /* left: 60%; */
+  top: 75%;
+}
+
+.softSkills {
+  position: relative;
+  /* left: 70%; */
+  top: 80%;
+}
+
+/* Project Carousel Styles */
+.project-container {
+  padding: 40px 20px 0 20px;
+  text-align: center;
+  height: 100vh;
+}
+
+.all-projects-container {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.project-section-title-container {
+  margin-bottom: 30px;
+}
+
+.projects-section-title {
+  font-size: 1.2em;
+  font-weight: 400;
+  color: var(--fontcol);
+}
+
+.project-title {
+  font-size: 1.8em;
+  font-weight: 600;
+  color: var(--fontcol);
+  display: block;
+  margin: 20px 0;
+  transition: opacity 0.3s ease;
+  position: relative;
+  z-index: 10; /* Ensure it stays above other elements */
+  top: 20%;
+  left: -30%;
+  transform: translateY(-20%);
+}
+
+.projects-container {
+  position: relative;
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.project {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.project-image:hover {
+  transform: scale(1.05);
+}
+
+.project-progress-indicator {
+  display: block;
+  width: 50px;
+  height: 3px;
+  background-color: var(--accentcol);
+  margin: 20px auto;
+  opacity: 0.7;
+}

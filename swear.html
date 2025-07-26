@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mai Eisenberg - Swear Three.js</title>
+    <link rel="icon" type="image/x-icon" href="./asset/MaiForPortfolio.png" />
+    <link rel="stylesheet" href="css/normalise.css" />
+    <link rel="stylesheet" href="./css/portfolio.css" />
+  </head>
+  <body class="bodySwear">
+
+    <div id="page-transition" class="transition-block"></div>
+
+    <div class="circle" id="custom-cursor">view casefile</div>
+
+    <main class="mainSwear">
+      <nav class="header-nav">
+        <ul>
+          <li><a href="index.html" class="Mai page-transition-link">Mai</a></li>
+          <li>
+            <a href="../index.html#portfolio" class="Portfolio page-transition-link">Portfolio</a>
+          </li>
+          <li><a href="#contactProjects" class="Contact page-transition-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <h3 class="prSwearPageTitle">
+        3D Shoe Customizer using three.js for Swear.
+      </h3>
+      <video autoplay muted loop playsinline id="prPageTitle">
+        <source src="../asset/Swear2.mp4" type="video/mp4" />
+      </video>
+    </main>
+
+    <div class="swearTitleContainer">
+      <h1 class="SwearSummaryTitle">Summary</h1>
+    </div>
+    <section class="swearProjectContainerOne">
+      <div class="swearSumContainer">
+        <div class="briefSolContainer">
+          <div class="briefContainer">
+            <h1 class="briefTitle">Project Brief</h1>
+            <p class="briefText">
+              For this school project in collaboration with Swear, we were
+              challenged to bring a digital shoe to life by making it fully
+              customizable in 3D. The goal was to allow users to interact with
+              the product in a personal, playful and intuitive way.
+            </p>
+          </div>
+
+          <div class="solutionContainer">
+            <h1 class="solutionTitle">Solution</h1>
+            <p class="solutionText">
+              I developed an interactive 3D shoe experience using Three.js,
+              where users can explore the shoe model in real time and instantly
+              change colours, textures and materials. I also designed a custom
+              background in Figma, keeping the look and feel aligned with
+              Swear’s bold and playful vibe. It became a fully personalized,
+              immersive experience. This project challenged me to bring together
+              technical 3D rendering and UX thinking. I learned how to work with
+              object hierarchies, map user events in 3D space, and keep
+              performance smooth even with complex models. Tools I used:
+              Three.js, JavaScript and Figma.
+            </p>
+          </div>
+        </div>
+        <div class="SkillContainer">
+          <h1 class="skillTitle">Key Features</h1>
+          <div class="skillText">
+            <ul>
+              <li class="bold">Clickable 3D elements:</li>
+              <p>
+                Each shoe part is individually clickable, allowing users to
+                change materials(textures) and colors with smooth visual
+                feedback.
+              </p>
+              <li class="bold">Initials customization:</li>
+              <p>
+                Users can enter their own initials, which are directly
+                visualized on the shoe model.
+              </p>
+              <li class="bold">Real-time rendering:</li>
+              <p>
+                Seamless interactivity and dynamic updates as to provide an
+                immersive and intuitive customised experience.
+              </p>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="linkstoproject">
+      <a
+        class="vercelLinkSwear"
+        href="https://sneaker-threejs-opdracht-7.vercel.app/"
+        >Check it out</a
+      >
+      <a class="todaMoreProjectsButton" href="../index.html#todaDiv"
+        >More Projects</a
+      >
+    </section>
+
+    <section class="todaMoreProjects">
+      <h1 class="todaMoreProjectsTitle">More Projects</h1>
+      <div class="moreProjects" id="moreProjects" data-current="swear"></div>
+    </section>
+
+    <!-- Contact Section Include -->
+    <div id="contact-placeholder"></div>
+    <script>
+      fetch("contact.html")
+        .then((r) => r.text())
+        .then((t) => {
+          document.getElementById("contact-placeholder").innerHTML = t;
+        });
+    </script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"
+      defer
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1/bundled/lenis.min.js"
+      defer
+    ></script>
+
+    <script src="https://unpkg.com/@phosphor-icons/web@2.0.3" defer></script>
+    <script src="./js/pageTransition.js" defer></script>
+    <script src="./js/projects.js" defer></script>
+    <script src="./js/cursor.js" defer></script>
+    <script src="./js/smoothNavScroll.js" defer></script>
+  </body>
+</html>
