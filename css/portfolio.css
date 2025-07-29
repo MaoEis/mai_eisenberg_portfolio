@@ -5,6 +5,8 @@
   --hoovercol: #00ffff;
   --accentcol: #335d75;
   --swearGreen: #68ff47;
+  --todaWhite: #fafaf8;
+  --max-width: 1050px;
 }
 
 * {
@@ -17,6 +19,9 @@ body {
   margin: 0;
   overflow-x: hidden;
   font-family: "Raleway", sans-serif;
+}
+
+.bodyIndex {
   min-height: 100vh;
   background-color: var(--backG);
   color: var(--fontcol);
@@ -166,7 +171,7 @@ body {
   white-space: nowrap; /* Keep words on one line initially */
   position: fixed;
   top: 50vh; /* Center vertically in viewport */
-  /* left: 100vw; Start from left edge */
+  left: 0;
   transform: translateY(-50%); /* Only center vertically */
   z-index: 10; /* Ensure text is above the sun */
   transition: none; /* Remove CSS transition, let JS handle it */
@@ -212,16 +217,20 @@ body {
   cursor: default;
 }
 
+/* skills section */
+
 .allSkills {
-  height: 40vh;
+  position: relative;
+  height: 60vh;
+  overflow: hidden;
   font-size: 3em;
   color: var(--fontcol);
-  padding: 40px 0;
-  cursor: default;
+  padding: 40px 0 0 0;
+  margin-bottom: -50px;
 }
 
 .skills {
-  padding: 20px 0;
+  position: absolute;
   white-space: nowrap;
 }
 
@@ -232,25 +241,20 @@ body {
 }
 
 .designSkills {
-  position: relative;
-  left: 0%;
-  top: 30%;
+  top: 20%;
 }
-
 .devSkills {
-  position: relative;
-  /* left: 60%; */
-  top: 35%;
-}
-
-.softSkills {
-  position: relative;
-  /* left: 70%; */
   top: 40%;
+}
+.softSkills {
+  top: 60%;
 }
 
 /* Project  */
 
+.mobile-index-projects-section {
+  display: none;
+}
 .project-container {
   text-align: left;
   min-height: 100vh; /* Reduced from 500vh to 100vh for less scrolling */
@@ -258,7 +262,6 @@ body {
   gap: 40px;
   cursor: default;
   z-index: 30;
-  position: relative;
 }
 
 .project {
@@ -319,6 +322,12 @@ body {
   text-align: right;
 }
 
+.projectTitle {
+  font-size: 1.2em;
+  font-weight: 700;
+  margin: 16px 0 8px 0;
+}
+
 /* Loader Styles */
 #loader-page {
   position: fixed;
@@ -374,21 +383,15 @@ body {
   background: var(--sun);
   padding: 40px 32px 32px 32px;
   width: 80vw;
-  height: 80vh;
-  margin: 150px 0 0 0;
+  height: auto;
+  max-width: 1100px;
+  max-height: 700px;
+  aspect-ratio: 1 / 1;
+  margin: auto;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
   border-radius: 2000px 2000px 0 0;
   overflow: hidden;
   justify-self: center;
-}
-
-.contact-title {
-  position: relative;
-  font-size: 1.2em;
-  color: var(--fontcol);
-  text-align: left;
-  font-weight: 200;
-  align-self: flex-start;
 }
 
 .contact-text {
@@ -399,6 +402,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100%;
 }
 
 .contact-text a {
@@ -428,7 +432,7 @@ svg {
 
 .contact-written-email {
   position: absolute;
-  bottom: 75px;
+  bottom: 4%;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -437,7 +441,7 @@ svg {
 
 .contact-written-email-projects {
   position: relative;
-  margin: 50px 0px 50px 0px;
+  margin: 50px 0px 10% 0px;
 }
 
 .contact-written-email a,
@@ -574,6 +578,11 @@ svg {
 
 /* toda page */
 
+.body-project-toda {
+  background-color: var(--todaWhite);
+  color: #17160f;
+}
+
 main {
   margin-bottom: -70px;
   display: flex;
@@ -582,12 +591,8 @@ main {
   background-color: #002f2f;
 }
 
-.mainToda {
-  height: 100vh;
-}
-
-.prPageTitle,
-.prSwearPageTitle {
+.toda-project-page-title,
+.swear-project-page-title {
   font-size: 4em;
   align-self: center;
   width: 60%;
@@ -611,16 +616,20 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   text-align: left;
-  padding: 200px 200px;
+  max-width: var(--max-width);
+  margin: auto;
+  height: 1000px;
 }
 
 .summaryTitle {
-  font-size: 3em;
+  display: flex;
+  font-size: 3rem;
   margin: 0px 0px 20px 0px;
   color: #ebbb2a;
-  text-align: center;
+  text-align: left;
+  align-self: flex-start !important;
 }
 
 .sumContainer,
@@ -628,9 +637,15 @@ main {
   display: grid;
   grid-template-columns: 4fr 3fr;
   flex-direction: row;
-  justify-content: baseline;
+  justify-content: center;
   align-items: baseline;
   gap: 100px;
+}
+
+.swear-summary-title {
+  margin-top: -8%;
+  font-weight: 700;
+  font-size: 3rem;
 }
 
 .sumContainerTwo {
@@ -670,23 +685,26 @@ main {
 
 .visBoardScreensDesk {
   display: flex;
+  justify-content: center;
   background-color: #ebbb2a;
   height: 100vh;
-  margin: 0px -40px;
+  margin: 0px 0px;
 }
 
 .visBoardImage {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: 60px;
   height: auto;
   margin-bottom: 0px;
+  max-width: 1050px;
 }
 
 .visBoardImage img {
-  width: 20%;
+  width: 30%;
   height: auto;
+  max-width: 310px;
   border-radius: 15px;
   box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.3);
 }
@@ -709,14 +727,17 @@ main {
 
 .visBoardColContainer {
   background-color: #ebbb2a;
-  margin-top: 100px;
-  padding: 50px 200px;
+  padding: 50px 0 50px 0;
+}
+
+.visual-board-max-width {
+  max-width: 1050px;
+  margin: auto;
 }
 
 .visBoardCol {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  max-width: 800px;
   justify-content: space-around;
   align-items: stretch;
   gap: 50px;
@@ -726,10 +747,6 @@ main {
 .colSecTitle,
 .todaMoodboardTitle {
   color: #17160f;
-}
-
-.swearProjectContainerOne {
-  padding: 0 60px;
 }
 
 .fontSecFlex {
@@ -747,7 +764,6 @@ main {
 .fontExample {
   display: block;
   width: 80%;
-  height: 100%;
   height: auto;
   margin: auto;
   padding: 40px;
@@ -845,7 +861,7 @@ main {
 }
 
 .fontsection {
-  padding: 50px 200px 20px 200px;
+  padding: 50px 0;
 }
 
 .Modak {
@@ -900,30 +916,24 @@ main {
 }
 
 .todaMoodboardImages img {
-  width: 150px;
-  height: 150px;
+  width: 250px;
+  height: 250px;
   object-fit: cover;
   border-radius: 50%;
-  margin: 10px;
 }
 
 .todaMoodboard {
   background-color: #ebbb2a;
-  padding: 20px 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0;
+  padding: 50px 0;
 }
 
 .todaMoodboardImages {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 0;
-  margin: 40px 0px;
+  justify-content: space-between;
+  align-items: space-between;
+  gap: 10x;
 }
 
 .todaMoodboardTitle,
@@ -932,16 +942,8 @@ main {
   align-self: flex-start;
 }
 
-.todaMoodboardHide {
-  display: none;
-}
-
 .todaMockUp {
-  padding: 40px 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 20px;
+  padding: 50px 0;
 }
 
 .todaMockUpImage {
@@ -974,7 +976,7 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px 200px;
+  padding: 50px 0;
   height: 100vh;
 }
 
@@ -1017,27 +1019,9 @@ main {
   transition: transform 0.2s ease-in-out, color 0.2s;
 }
 
-.projectTitle {
-  font-size: 1.7em;
-  font-weight: 600;
-  margin: 16px 0 8px 0;
-}
+/* swear project  */
 
-.indexProjectTitle {
-  font-size: 2em;
-  font-weight: 600;
-  text-align: center;
-  margin: 16px 0 24px 0;
-}
-
-.indexProjectSubtitle {
-  font-size: 1em;
-  text-align: center;
-}
-
-/* swear projecr  */
-
-.mainSwear {
+.main-swear {
   background-color: black;
 }
 .bodySwear {
@@ -1056,7 +1040,7 @@ main {
   font-weight: 500;
   text-align: center;
   border-radius: 5px;
-  margin: 80px auto 0 auto;
+  margin: 0 auto;
 }
 .vercelLinkSwear:hover {
   background-color: black;
@@ -1064,13 +1048,15 @@ main {
   cursor: pointer;
 }
 
-.swearTitleContainer {
-  background-color: var(--swearGreen);
-  padding: 200px 200px 25px 200px;
+.swear-summary-section {
+  background-color: white;
+  height: 840px;
 }
 
-.swearProjectContainerOne {
-  padding: 0 200px;
+.swear-summary-title-backdrop {
+  background-color: var(--swearGreen);
+  width: 100%;
+  height: 30%;
 }
 
 .contactProjects {
@@ -1189,6 +1175,10 @@ main {
     display: none;
   }
 
+  .circle {
+    display: none !important;
+  }
+
   .sun {
     width: 300px;
     height: 300px;
@@ -1209,21 +1199,12 @@ main {
     display: none;
   }
 
-  .prPageTitle {
-    font-size: 1.8em;
-    align-self: center;
-    width: 80%;
-    text-align: center;
-    color: #ebe9df;
-    padding-top: 20px;
-  }
-
   .projectContainerOne {
     padding: 56px 20px 0 20px;
   }
 
   .summaryTitle {
-    font-size: 1.8em;
+    font-size: 2rem;
     color: #ebbb2a;
     text-align: center;
   }
@@ -1242,26 +1223,7 @@ main {
   .colSecTitle {
     font-size: 1.2em;
     font-weight: 600;
-    color: #ebe9df;
     margin-bottom: 5px;
-  }
-
-  .SwearSummaryTitle {
-    display: inline-block;
-    width: 100%;
-    text-align: left;
-    background-color: var(--swearGreen);
-    font-size: 1.8em;
-    font-weight: 200;
-    padding: 20px;
-  }
-
-  .swearProjectContainerOne {
-    margin-top: 40px;
-  }
-
-  .swearSumContainer {
-    padding: 0px 20px;
   }
   .logoImage img {
     width: 100%;
@@ -1277,19 +1239,7 @@ main {
     padding: 40px 20px;
     margin-top: 100px;
   }
-  .prSwearPageTitle {
-    font-size: 1.8em;
-    align-self: center;
-    width: 80%;
-    text-align: center;
-    color: black;
-    padding-top: 20px;
-  }
 
-  .swearTitleContainer {
-    margin-top: 48px;
-    margin-bottom: -40px;
-  }
   .linkstoproject {
     display: flex;
     flex-direction: column;
@@ -1301,10 +1251,17 @@ main {
 
 /* Phone (up to 768px) */
 @media (max-width: 768px) {
+  .body {
+    overflow-x: hidden;
+  }
+
   .project-text {
     max-width: 150px;
   }
 
+  .circle {
+    display: none !important;
+  }
   .visBoardScreensDesk,
   .visBoardImage {
     display: none;
@@ -1335,9 +1292,9 @@ main {
   .arrow {
     position: absolute;
     top: 50%;
+    background-color: transparent;
     transform: translateY(-50%);
     font-size: 2rem;
-    background-color: #ebbb2a;
     color: #030f00;
     border: none;
     cursor: pointer;
@@ -1346,14 +1303,303 @@ main {
   }
 
   .arrow.left {
-    left: -40px;
+    left: -50px;
   }
 
   .arrow.right {
-    right: -40px;
+    right: -50px;
   }
 
   .projectContainerTwo {
     margin: 20px;
+  }
+
+  .project-container {
+    display: none;
+  }
+
+  /* mobile index projects */
+
+  .mobile-index-projects-section {
+    display: flex;
+    padding: 100px 20px 20px 20px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mobile-index-projects-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    gap: 20px;
+    width: 90%;
+  }
+
+  .mobile-index-projectcard {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  .mobile-index-project-link img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.2s;
+  }
+
+  .mobile-index-project-link {
+    text-decoration: none;
+    color: var(--fontcol);
+  }
+
+  .mobile-index-project-title {
+    font-size: 1.2em;
+    font-weight: 600;
+    text-align: center;
+    margin: 8px 0 8px 0;
+  }
+
+  .mobile-index-project-subtitle {
+    font-size: 1em;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  /* end mobile index projects */
+  /* mobile index contact  */
+
+  .contact-icons {
+    top: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 16px;
+    gap: 0.5rem;
+  }
+
+  .contact-icons a {
+    font-size: 2rem;
+  }
+  .contact-icons i {
+    font-size: 2rem;
+  }
+  .contact-written-email {
+    bottom: 4%;
+  }
+
+  /* end mobile index contact */
+
+  /* project page toda */
+
+  .toda-project-page-title,
+  .swear-project-page-title {
+    font-size: 1.8em;
+    width: 80%;
+    padding: 24px 0;
+  }
+
+  #prPageTitle {
+    margin: 0 auto 56px auto;
+    height: auto;
+    border-radius: 16px;
+  }
+
+  .projectContainerOne {
+    padding: 56px 24px 0 24px;
+    margin: 0;
+  }
+
+  .mainToda {
+    padding: 24px 0;
+    margin-bottom: -24px;
+  }
+
+  .fontExample,
+  .todaDesignSystem,
+  .SkillContainer {
+    display: none;
+  }
+
+  .projectContainerOne,
+  .projectContainerTwo,
+  .fontsection,
+  .visual-board-max-width {
+    height: auto;
+    padding: 40px 16px;
+    margin: 0;
+  }
+
+  .sumContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+  }
+
+  .briefContainer {
+    gap: 0px;
+  }
+
+  .briefText,
+  .solutionText {
+    margin: 0;
+    padding: 0;
+  }
+
+  .sumContainerTwo,
+  .fontSecFlex {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+  }
+
+  .body-project-toda {
+    padding: 0;
+  }
+  .body-project-toda h1 {
+    margin: 24px 0;
+  }
+  .visBoardColContainer {
+    padding: 40px 20px;
+    margin-top: 100px;
+  }
+
+  .visBoardCol {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 0 8px;
+  }
+  .coltitle {
+    font-size: 0.7em;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #030f00;
+  }
+
+  .colYel,
+  .colGre,
+  .colWhi,
+  .colBla {
+    margin-top: 16px;
+  }
+
+  .fontContainer {
+    width: 100%;
+    padding: 0;
+  }
+
+  .fontTypes {
+    padding: 0 0 32px 32px;
+  }
+
+  .todaMoodboardImages img {
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+  }
+
+  .todaMoodboard {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .todaMoodboardImages {
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    margin: 40px 0px;
+  }
+
+  .todaMockUp {
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .todaMoreProjects {
+    display: none;
+  }
+
+  .todaMoreProjectsButton {
+    display: block;
+    width: 70%;
+    max-width: 175px;
+    margin: auto;
+    padding: 10px;
+    background-color: var(--sun);
+    color: var(--fontcol);
+    font-weight: 500;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    margin: 32px auto;
+  }
+
+  .contact-ball {
+    width: 250px;
+    height: 250px;
+  }
+
+  .contact-ball h3 {
+    font-size: 1rem;
+    margin-top: 40px;
+  }
+
+  .contact-icons-projects {
+    font-size: 1rem;
+    gap: 16px;
+  }
+
+  .mai-mobile,
+  .portfolio-mobile,
+  .contact-mobile {
+    text-decoration: none;
+    color: black;
+    font-weight: 900;
+    font-size: 1.2em;
+  }
+
+  .loader-ball.grow {
+    width: 300px;
+    height: 300px;
+    font-size: 2rem;
+  }
+
+  /* swear page */
+
+  .main-swear {
+    padding-top: 24px;
+  }
+  .swear-summary-section {
+    height: 640px;
+  }
+  .swear-summary-title {
+    margin-top: -96px;
+    font-weight: 700;
+    font-size: 2rem;
+  }
+
+  .swear-summary-title-backdrop {
+    height: 16%;
+  }
+
+  .swearSumContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
   }
 }

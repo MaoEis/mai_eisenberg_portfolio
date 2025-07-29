@@ -14,27 +14,27 @@ document.addEventListener("DOMContentLoaded", function () {
       subtitle: "Three.js project showcasing a 3D website.",
       page: "../swear.html",
     },
-    {
-      key: "italian-kiosk",
-      title: "Italian Kiosk",
-      img: "../asset/TodaLogo2.png",
-      subtitle: "Italian food kiosk branding.",
-      page: "../toda.html",
-    },
-    {
-      key: "dino-ghost-peppers",
-      title: "Dino Ghost Peppers",
-      img: "../asset/TodaLogo2.png",
-      subtitle: "Spicy branding for a hot sauce startup.",
-      page: "../toda.html",
-    },
-    {
-      key: "acsi-rebranding",
-      title: "ACSI Rebranding",
-      img: "../asset/TodaLogo2.png",
-      subtitle: "Rebranding for ACSI.",
-      page: "../toda.html",
-    },
+    // {
+    //   key: "italian-kiosk",
+    //   title: "Italian Kiosk",
+    //   img: "../asset/TodaLogo2.png",
+    //   subtitle: "Italian food kiosk branding.",
+    //   page: "../toda.html",
+    // },
+    // {
+    //   key: "dino-ghost-peppers",
+    //   title: "Dino Ghost Peppers",
+    //   img: "../asset/TodaLogo2.png",
+    //   subtitle: "Spicy branding for a hot sauce startup.",
+    //   page: "../toda.html",
+    // },
+    // {
+    //   key: "acsi-rebranding",
+    //   title: "ACSI Rebranding",
+    //   img: "../asset/TodaLogo2.png",
+    //   subtitle: "Rebranding for ACSI.",
+    //   page: "../toda.html",
+    // },
   ];
 
   // Render moreProjects if present
@@ -58,16 +58,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Render indexProjects if present
-  const containerIndex = document.getElementById("indexProjects");
+  // Render mobile-index-projects-container if present
+  const containerIndex = document.getElementById(
+    "mobile-index-projects-container"
+  );
   if (containerIndex) {
     projects.forEach((project) => {
       containerIndex.innerHTML += `
-        <div class="indexProjectCard">
-          <a href="${project.page}" class="indexProjectLink page-transition-link">
-            <img src="${project.img}" alt="${project.title}" class="indexProjectImg" />
-            <h3 class="indexProjectTitle">${project.title}</h3>
-            <p class="indexProjectSubtitle">${project.subtitle}</p>
+        <div class="mobile-index-projectcard">
+          <a href="${project.page}" class="mobile-index-project-link page-transition-link">
+            <img src="${project.img}" alt="${project.title}" class="mobile-index-project-img" />
+            <h3 class="mobile-index-project-title">${project.title}</h3>
+            <p class="mobile-index-project-subtitle">${project.subtitle}</p>
           </a>
         </div>
       `;

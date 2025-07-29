@@ -90,4 +90,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // On page load, animate the block out and nav in
   hideTransitionBlock();
+
+  // Hide transition block on browser back/forward navigation
+  window.addEventListener("pageshow", function (event) {
+    // Only hide if the transition block is visible
+    const block = document.querySelector(".transition-block");
+    if (block && block.style.display !== "none") {
+      hideTransitionBlock();
+    }
+  });
 });

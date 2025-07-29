@@ -7,25 +7,36 @@
     <link rel="icon" type="image/x-icon" href="./asset/MaiForPortfolio.png" />
     <link rel="stylesheet" href="css/normalise.css" />
     <link rel="stylesheet" href="./css/portfolio.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,900"
+      rel="stylesheet"
+    />
   </head>
   <body class="bodySwear">
-
     <div id="page-transition" class="transition-block"></div>
 
     <div class="circle" id="custom-cursor">view casefile</div>
 
-    <main class="mainSwear">
+    <main class="main-swear">
       <nav class="header-nav">
         <ul>
           <li><a href="index.html" class="Mai page-transition-link">Mai</a></li>
           <li>
-            <a href="../index.html#portfolio" class="Portfolio page-transition-link">Portfolio</a>
+            <a
+              href="../index.html#portfolio"
+              class="Portfolio page-transition-link"
+              >Portfolio</a
+            >
           </li>
-          <li><a href="#contactProjects" class="Contact page-transition-link">Contact</a></li>
+          <li>
+            <a href="#contactProjects" class="Contact page-transition-link"
+              >Contact</a
+            >
+          </li>
         </ul>
       </nav>
 
-      <h3 class="prSwearPageTitle">
+      <h3 class="swear-project-page-title">
         3D Shoe Customizer using three.js for Swear.
       </h3>
       <video autoplay muted loop playsinline id="prPageTitle">
@@ -33,12 +44,12 @@
       </video>
     </main>
 
-    <div class="swearTitleContainer">
-      <h1 class="SwearSummaryTitle">Summary</h1>
-    </div>
-    <section class="swearProjectContainerOne">
-      <div class="swearSumContainer">
-        <div class="briefSolContainer">
+    <div class="swear-summary-section">
+      <div class="swear-summary-title-backdrop"></div>
+      <div class="visual-board-max-width">
+          <h1 class="swear-summary-title">Summary</h1>
+          <div class="swearSumContainer">
+            <div class="briefSolContainer">
           <div class="briefContainer">
             <h1 class="briefTitle">Project Brief</h1>
             <p class="briefText">
@@ -64,8 +75,8 @@
               Three.js, JavaScript and Figma.
             </p>
           </div>
-        </div>
-        <div class="SkillContainer">
+            </div>
+            <div class="SkillContainer">
           <h1 class="skillTitle">Key Features</h1>
           <div class="skillText">
             <ul>
@@ -87,9 +98,10 @@
               </p>
             </ul>
           </div>
-        </div>
+            </div>
+          </div>
       </div>
-    </section>
+    </div>
 
     <section class="linkstoproject">
       <a
@@ -102,11 +114,15 @@
       >
     </section>
 
-    <section class="todaMoreProjects">
-      <h1 class="todaMoreProjectsTitle">More Projects</h1>
-      <div class="moreProjects" id="moreProjects" data-current="swear"></div>
-    </section>
 
+    <section class="todaMoreProjects">
+        <div class="visual-board-max-width">
+          <h1 class="todaMoreProjectsTitle">More Projects</h1>
+          <div class="moreProjects" id="moreProjects" data-current="swear"></div>
+          </div>
+        </div>
+    </section>
+  
     <!-- Contact Section Include -->
     <div id="contact-placeholder"></div>
     <script>

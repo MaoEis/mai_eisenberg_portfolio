@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error</title>
+    <style>
+      body {
+        background: #f8f4e1;
+        color: #321400;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        overflow: hidden;
+      }
+      .sun {
+        width: 200px;
+        height: 200px;
+        background: #feba17;
+        border-radius: 50%;
+        position: relative;
+        box-shadow: 0 0 60px 15px #feba17;
+        margin-bottom: 30px;
+        overflow: hidden;
+      }
+      .crack {
+        position: absolute;
+        color: #f8f4e1;
+        left: 50%;
+        top: -60px;
+        width: 0;
+        height: 320px;
+        z-index: 2;
+      }
+      .crack svg {
+        color: #f8f4e1;
+        display: block;
+        height: 320px;
+        width: 24px;
+        transform: translateX(-50%);
+      }
+      h1 {
+        font-size: 2.5rem;
+        margin: 0 0 10px 0;
+        z-index: 10;
+      }
+      p {
+        font-size: 1.2rem;
+        margin: 0 0 20px 0;
+        z-index: 10;
+      }
+      a {
+        color: #335d75;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.2s;
+        z-index: 10;
+        padding: 10px 20px;
+        border: 1px solid #335d75;
+        border-radius: 5px;
+      }
+      a:hover {
+        color: #feba17;
+        border: 1px solid #feba17;
+        background-color: #335d75;
+      }
+      .cloud {
+        position: absolute;
+        background: #fff;
+        border-radius: 50%;
+        opacity: 0.8;
+        z-index: 0;
+        box-shadow: 60px 0 0 0 #fff, 30px 20px 0 0 #fff, 90px 20px 0 0 #fff;
+      }
+      .cloud1 {
+        width: 100px;
+        height: 50px;
+        top: 60px;
+        left: 10vw;
+        animation: cloudmove 30s linear infinite;
+      }
+      .cloud2 {
+        width: 140px;
+        height: 60px;
+        top: 120px;
+        left: 60vw;
+        opacity: 0.7;
+        animation: cloudmove2 40s linear infinite;
+      }
+      .cloud3 {
+        width: 80px;
+        height: 40px;
+        top: 0px;
+        left: 35vw;
+        opacity: 0.6;
+        animation: cloudmove3 40s linear infinite;
+      }
+
+      .cloud4 {
+        width: 160px;
+        height: 100px;
+        top: 400px;
+        left: 90vw;
+        opacity: 0.8;
+        animation: cloudmove4 50s linear infinite;
+      }
+
+      .cloud5 {
+        width: 90px;
+        height: 60px;
+        top: 700px;
+        left: 20vw;
+        opacity: 0.7;
+        animation: cloudmove5 90s linear infinite;
+      }
+
+      .cloud6 {
+        width: 120px;
+        height: 80px;
+        top: 600px;
+        left: 75vw;
+        opacity: 0.9;
+        animation: cloudmove6 30s linear infinite;
+      }
+      .cloud7 {
+        width: 110px;
+        height: 60px;
+        top: 300px;
+        left: 15vw;
+        opacity: 0.75;
+        animation: cloudmove7 60s linear infinite;
+      }
+      .cloud8 {
+        width: 130px;
+        height: 70px;
+        top: 500px;
+        left: 50vw;
+        opacity: 0.85;
+        animation: cloudmove8 80s linear infinite;
+      }
+      .cloud9 {
+        width: 100px;
+        height: 50px;
+        top: 200px;
+        left: 80vw;
+        opacity: 0.7;
+        animation: cloudmove9 55s linear infinite;
+      }
+      .cloud10 {
+        width: 150px;
+        height: 90px;
+        top: 350px;
+        left: 40vw;
+        opacity: 0.8;
+        animation: cloudmove10 70s linear infinite;
+      }
+      .cloud11 {
+        width: 120px;
+        height: 60px;
+        top: 100px;
+        left: 70vw;
+        opacity: 0.65;
+        animation: cloudmove11 65s linear infinite;
+      }
+      @keyframes cloudmove {
+        0% {
+          left: 10vw;
+        }
+        100% {
+          left: 80vw;
+        }
+      }
+      @keyframes cloudmove2 {
+        0% {
+          left: 60vw;
+        }
+        100% {
+          left: -20vw;
+        }
+      }
+      @keyframes cloudmove3 {
+        0% {
+          left: 35vw;
+        }
+        100% {
+          left: 90vw;
+        }
+      }
+      @keyframes cloudmove4 {
+        0% {
+          left: 120vw;
+        }
+        100% {
+          left: 0vw;
+        }
+      }
+      @keyframes cloudmove5 {
+        0% {
+          left: 20vw;
+        }
+        100% {
+          left: 70vw;
+        }
+      }
+      @keyframes cloudmove6 {
+        0% {
+          left: 75vw;
+        }
+        100% {
+          left: 0vw;
+        }
+      }
+      @keyframes cloudmove7 {
+        0% {
+          left: -15vw;
+        }
+        100% {
+          left: 85vw;
+        }
+      }
+      @keyframes cloudmove8 {
+        0% {
+          left: 50vw;
+        }
+        100% {
+          left: -10vw;
+        }
+      }
+      @keyframes cloudmove9 {
+        0% {
+          left: 80vw;
+        }
+        100% {
+          left: 10vw;
+        }
+      }
+      @keyframes cloudmove10 {
+        0% {
+          left: -40vw;
+        }
+        100% {
+          left: 100vw;
+        }
+      }
+      @keyframes cloudmove11 {
+        0% {
+          left: 70vw;
+        }
+        100% {
+          left: 0vw;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
+    <div class="cloud cloud4"></div>
+    <div class="cloud cloud5"></div>
+    <div class="cloud cloud6"></div>
+    <div class="cloud cloud7"></div>
+    <div class="cloud cloud8"></div>
+    <div class="cloud cloud9"></div>
+    <div class="cloud cloud10"></div>
+    <div class="cloud cloud11"></div>
+
+    <div class="sun">
+      <div class="crack">
+        <svg viewBox="0 0 24 320" xmlns="http://www.w3.org/2000/svg">
+          <polyline
+            points="12,0 12,40 4,70 20,110 12,150 12,180 4,210 20,250 12,290 12,320"
+            fill="none"
+            stroke="#f8f4e1"
+            stroke-width="7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </div>
+    </div>
+    <h1>Oops! Something went wrong.</h1>
+    <p>The page you are looking for is lost in the clouds.</p>
+    <a href="index.html">Return Home</a>
+  </body>
+</html>

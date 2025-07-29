@@ -16,12 +16,13 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
     />
   </head>
-  <body>
+  <body class="body-project-toda toda-page">
     <div id="page-transition" class="transition-block"></div>
 
     <div class="circle" id="custom-cursor">view casefile</div>
 
     <main class="mainToda">
+
       <nav class="header-nav">
         <ul>
           <li><a href="index.html" class="Mai page-transition-link">Mai</a></li>
@@ -40,11 +41,12 @@
         </ul>
       </nav>
 
-      <h3 class="prPageTitle">Mobile App for sustainable clothes sharing.</h3>
+      <h3 class="toda-project-page-title">Mobile App for sustainable clothes sharing.</h3>
       <video autoplay muted loop playsinline id="prPageTitle">
         <source src="../asset/TodAscherm.mov" type="video/mp4" />
       </video>
     </main>
+
     <section class="projectContainerOne">
       <h1 class="summaryTitle">Summary</h1>
       <div class="sumContainer">
@@ -96,6 +98,7 @@
         </div>
       </div>
     </section>
+
     <section class="visBoardScreensDesk">
       <div class="visBoardImage">
         <img src="./asset/TI1.png" alt="screenOne" />
@@ -103,13 +106,19 @@
         <img src="./asset/TI3.png" alt="screenThree" />
       </div>
     </section>
+
     <section class="visBoardScreensMobile">
       <div class="carousel">
-        <button class="arrow left">&#10094;</button>
+        <button class="arrow left" aria-label="Previous">
+          <i class="ph ph-caret-left"></i>
+        </button>
         <img id="carouselImage" src="./asset/TI1.png" alt="screen" />
-        <button class="arrow right">&#10095;</button>
+        <button class="arrow right" aria-label="Next">
+          <i class="ph ph-caret-right"></i>
+        </button>
       </div>
     </section>
+
     <section class="projectContainerTwo">
       <h1 class="summaryTitle">Branding</h1>
       <div class="sumContainerTwo">
@@ -147,10 +156,12 @@
         </div>
       </div>
     </section>
+
     <section class="visBoardColContainer">
-      <h1 class="colSecTitle">Color Palette</h1>
-      <div class="visBoardCol">
-        <div class="yellow">
+      <div class="visual-board-max-width">
+        <h1 class="colSecTitle">Color Palette</h1>
+        <div class="visBoardCol">
+          <div class="yellow">
           <div class="colYel"></div>
           <div>
             <p class="coltitle">Sunnyside Up</p>
@@ -160,8 +171,8 @@
               CMYK <b>0, 20, 82, 8</b>
             </p>
           </div>
-        </div>
-        <div class="green">
+          </div>
+          <div class="green">
           <div class="colGre"></div>
           <div>
             <p class="coltitle">Jungle Night</p>
@@ -171,8 +182,8 @@
               CMYK <b>100, 0, 0, 82</b>
             </p>
           </div>
-        </div>
-        <div class="black">
+          </div>
+          <div class="black">
           <div class="colBla"></div>
           <div>
             <p class="coltitle">Charming Noir</p>
@@ -182,8 +193,8 @@
               CMYK <b>0, 4, 35, 91</b>
             </p>
           </div>
-        </div>
-        <div class="white">
+          </div>
+          <div class="white">
           <div class="colWhi"></div>
           <div>
             <p class="coltitle">Dead Sea Salt</p>
@@ -193,14 +204,16 @@
               CMYK <b>0, 0, 1, 2</b>
             </p>
           </div>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="fontsection">
-      <h1 class="fontSecTitle">Typography</h1>
-      <div class="fontSecFlex">
-        <div class="fontContainer">
+      <div class="visual-board-max-width">
+        <h1 class="fontSecTitle">Typography</h1>
+        <div class="fontSecFlex">
+          <div class="fontContainer">
           <div class="fontText">
             <p class="fontDesc">
               Toda uses fonts that reflect the app’s playful yet modern
@@ -229,8 +242,8 @@
               </p>
             </ul>
           </div>
-        </div>
-        <div class="fontExample">
+          </div>
+          <div class="fontExample">
           <p class="titleExample">Finally, Toda is here.</p>
           <p class="headerTwoExample">Share your clothes now.</p>
           <p class="headerThreeExample">
@@ -244,9 +257,11 @@
             opportunity to look into your closet. Share your special occasion
             clothes so everybody can feels beautiful.
           </p>
+          </div>
         </div>
       </div>
     </section>
+
     <section class="todaDesignSystem">
       <div class="todaFavIcon">
         <h1 class="todaFavIconTitle">Favicon</h1>
@@ -261,8 +276,9 @@
     </section>
 
     <section class="todaMoodboard">
-      <h1 class="todaMoodboardTitle">Moodboard</h1>
-      <div class="todaMoodboardImages">
+      <div class="visual-board-max-width">
+        <h1 class="todaMoodboardTitle">Moodboard</h1>
+        <div class="todaMoodboardImages">
         <img src="./asset/TodaMoodboard5.jpg" alt="moodboard1" />
         <img src="./asset/TodaMoodboard6.jpg" alt="moodboard2" />
         <img
@@ -272,22 +288,29 @@
         />
         <img src="./asset/TodaMoodboard2.jpeg" alt="moodboard4" />
         <img src="./asset/TodaMoodboard4.jpg" alt="moodboard5" />
+        </div>
       </div>
     </section>
 
     <section class="todaMockUp">
-      <h1 class="todaMockUpTitle">Mockups</h1>
-      <div class="todaMockUpImage">
+      <div class="visual-board-max-width">
+        <h1 class="todaMockUpTitle">Mockups</h1>
+        <div class="todaMockUpImage">
         <img src="./asset/TodaMockup.png" alt="mockup" />
         <img src="./asset/TodaMockup2.png" alt="mockup2" />
         <img src="./asset/TodaMockup3.png" alt="mockup3" />
+        </div>
       </div>
     </section>
 
     <section class="todaMoreProjects">
-      <h1 class="todaMoreProjectsTitle">More Projects</h1>
-      <div class="moreProjects" id="moreProjects" data-current="toda"></div>
+      <div class="visual-board-max-width">
+        <h1 class="todaMoreProjectsTitle">More Projects</h1>
+        <div class="moreProjects" id="moreProjects" data-current="toda"></div>
+        </div>
+      </div>
     </section>
+
     <a class="todaMoreProjectsButton" href="../index.html#todaDiv"
       >More Projects</a
     >
@@ -320,10 +343,14 @@
       defer
     ></script>
 
+
     <script src="https://unpkg.com/@phosphor-icons/web@2.0.3" defer></script>
     <script src="./js/pageTransition.js" defer></script>
     <script src="./js/projects.js" defer></script>
     <script src="./js/cursor.js" defer></script>
     <script src="./js/smoothNavScroll.js" defer></script>
+    <script src="./js/mobile.js" defer></script>
   </body>
+</html>
+
 </html>

@@ -123,7 +123,7 @@ const mainScrollTimeline = gsap.timeline({
     trigger: ".container",
     start: "top top", // Main animation sequence starts when container hits top
     // *** MODIFIED END VALUE ***
-    end: "+=1200", // Reduced scroll distance. Adjust this value to control the blank space.
+    end: "+=2000", // Reduced scroll distance. Adjust this value to control the blank space.
     scrub: 1, // Smoothly links timeline progress to scroll
     pin: true, // Pins the container while the animations run for better control
     // markers: true, // Uncomment for debugging to see the trigger points
@@ -133,11 +133,15 @@ const mainScrollTimeline = gsap.timeline({
 // Add the Text Animation to the main timeline
 mainScrollTimeline.fromTo(
   ".text-animation",
-  { x: "120vw" }, // Start off-screen right
+  { x: "100vw" }, // Start off-screen right
   {
-    x: "-120vw", // End far off-screen left (adjust as needed)
+    x: () =>
+      `-${
+        window.innerWidth +
+        document.querySelector(".text-animation").offsetWidth
+      }px`, // End far off-screen left (adjust as needed)
     ease: "none",
-    duration: 5, // Relative duration within the timeline
+    duration: 10, // Relative duration within the timeline
   }
 );
 
@@ -147,7 +151,7 @@ mainScrollTimeline.to(
   {
     scale: 6, // Adjust this value to make it truly full screen.
     ease: "power2.inOut",
-    duration: 4, // Relative duration within the timeline
+    duration: 10, // Relative duration within the timeline
     onStart: () => sunPulseAnimation.pause(), // Pause pulse when animation starts
   },
   ">-0.2" // Starts this tween 0.2 units BEFORE the previous one ends (slight overlap)
@@ -163,7 +167,7 @@ mainScrollTimeline.to(
       value: fullText,
       delimiter: "", // character-by-character typing
     },
-    duration: 10, // Time for text to fully appear
+    duration: 15, // Time for text to fully appear
     ease: "none",
   },
   ">"
@@ -212,116 +216,49 @@ document.querySelectorAll(".project-container").forEach((container) => {
 });
 
 // ----- Skills Section Animation -----
-const skillslTimeline = gsap.timeline({
+const skillsTimeline = gsap.timeline({
   scrollTrigger: {
     trigger: ".allSkills",
-    start: "top top", // Start when allSkills section hits top
-    end: "+=4500", // Extended scroll distance to accommodate all animations
-    scrub: 1, // Smoothly links timeline progress to scroll
-    pin: true, // Pins the container while the animations run for better control
-    // markers: true, // Uncomment for debugging
-    onLeaveBack: () => {
-      // You might need to adjust this if the text is supposed to reappear
-      gsap.set(".text-approach-animation", { y: "-10vh", opacity: 0 }); // Ensure it's hidden when leaving back
-    },
+    start: "top top",
+    end: "+=4500",
+    scrub: 1,
+    invalidateOnRefresh: true,
+    pin: true,
   },
 });
 
-// Design skills animation - moves from right to left
-skillslTimeline.fromTo(
-  ".designSkills",
-  {
-    x: "50vw", // Start slightly below the top
-  }, // Start off-screen right
-  {
-    x: "-130vw", // End far off-screen left
-    ease: "none",
-    duration: 3, // Relative duration within the timeline
-  },
-  ">-8" // Starts this tween 0.5 seconds before the previous one starts
-);
-
-// Dev skills animation - starts after design skills begins
-skillslTimeline.fromTo(
-  ".devSkills",
-  { x: "60vw" }, // Start off-screen right
-  {
-    x: "-110vw", // End far off-screen left
-    ease: "none",
-    duration: 3, // Relative duration within the timeline
-  },
-  "<0.5" // Starts this tween 0.5 seconds after the previous one starts
-);
-
-// Soft skills animation - starts after dev skills begins
-skillslTimeline.fromTo(
-  ".softSkills",
-  { x: "70vw" }, // Start off-screen right
-  {
-    x: "-200vw", // End far off-screen left
-    ease: "none",
-    duration: 4, // Relative duration within the timeline
-  },
-  "<0.5" // Starts this tween 0.5 seconds after the previous one starts
-);
-
-// Smooth scroll for nav links and active state
-const navLinks = document.querySelectorAll(".header-nav a");
-const sectionMap = [
-  { linkClass: "Mai", section: document.querySelector(".sun") },
-  {
-    linkClass: "Portfolio",
-    section: document.querySelector(".project-container"),
-  },
-  { linkClass: "Contact", section: document.querySelector(".contact") },
-];
-
-function setActiveNav(className) {
-  navLinks.forEach((link) => link.classList.remove("active"));
-  const activeLink = document.querySelector("." + className);
-  if (activeLink) activeLink.classList.add("active");
+function vw(v) {
+  return window.innerWidth * (v / 100);
 }
 
-// Click logic (already present)
-document.querySelector(".Mai").addEventListener("click", function (e) {
-  e.preventDefault();
-  window.scrollTo({ top: 0, behavior: "smooth" });
-  setActiveNav("Mai");
-  sunPulseAnimation.restart(); // Restart the sun pulse animation
-});
+function getSlideTween(selector, startVW) {
+  const startX = vw(startVW);
+  const el = document.querySelector(selector);
+  const endX = startX - el.offsetWidth;
 
-document.querySelector(".Portfolio").addEventListener("click", function (e) {
-  e.preventDefault();
-  document
-    .querySelector(".project-container")
-    .scrollIntoView({ behavior: "smooth" });
-  setActiveNav("Portfolio");
-});
+  return {
+    from: { x: startX },
+    to: {
+      x: endX,
+      ease: "none",
+      duration: 3,
+    },
+  };
+}
 
-document.querySelector(".Contact").addEventListener("click", function (e) {
-  e.preventDefault();
-  document.querySelector(".contact").scrollIntoView({ behavior: "smooth" });
-  setActiveNav("Contact");
-});
+// DESIGN SKILLS (50vw to 50vw - width)
+const design = getSlideTween(".designSkills", 50);
+skillsTimeline.fromTo(".designSkills", design.from, design.to);
 
-// Intersection Observer for scroll-based nav highlighting
-const observerOptions = {
-  root: null,
-  rootMargin: "0px",
-  threshold: 0.2, // Lower threshold for better detection
-};
+// DEV SKILLS (60vw to 60vw - width)
+const dev = getSlideTween(".devSkills", 60);
+skillsTimeline.fromTo(".devSkills", dev.from, dev.to, "<0.5");
 
-sectionMap.forEach(({ linkClass, section }) => {
-  if (!section) return;
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        setActiveNav(linkClass);
-      }
-    });
-  }, observerOptions);
-  observer.observe(section);
-});
+// SOFT SKILLS (70vw to 70vw - width)
+const soft = getSlideTween(".softSkills", 70);
+skillsTimeline.fromTo(".softSkills", soft.from, soft.to, "<0.5");
+
+
 
 // Loader page logic with ball grow and percentage
 function animateLoaderBall() {

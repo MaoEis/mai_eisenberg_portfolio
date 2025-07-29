@@ -34,18 +34,12 @@
     <nav class="index-nav">
       <ul>
         <li><a href="#intro" class="Mai page-transition-link">Mai</a></li>
-        <li>
-          <a href="#portfolio" class="Portfolio page-transition-link"
-            >Portfolio</a
-          >
-        </li>
-        <li>
-          <a href="#contact" class="Contact page-transition-link">Contact</a>
-        </li>
+        <li><a href="#portfolio" class="Portfolio page-transition-link">Portfolio</a></li>
+        <li><a href="#contact" class="Contact page-transition-link">Contact</a></li>
       </ul>
     </nav>
 
-    <div class="container">
+    <div class="container intro" id="intro">
       <div class="bg-selfies"></div>
       <div class="smile"><img src="/asset/smile.svg" alt="smile" /></div>
       <div class="sun" id="sun"></div>
@@ -60,7 +54,7 @@
       </div>
     </div>
 
-    <div id="portfolio" class="project-container">
+    <div id="portfolio" class="project-container portfolio">
       <div class="project left">
         <a href="/toda.html" class="page-transition-link">
           <img src="/asset/toda.png" alt="Toda" class="project-image" />
@@ -112,6 +106,10 @@
       </div>
     </div>
 
+    <section class="mobile-index-projects-section" id="mobile-index-projects-section">
+      <div class="mobile-index-projects-container" id="mobile-index-projects-container"></div>
+    </section>
+
     <div class="allSkills">
       <div class="designSkills skills">
         <span>
@@ -138,7 +136,7 @@
     </div>
 
     <!-- Contact Section Include -->
-    <div class="contact">
+    <div class="contact" id="contact">
       <div class="contact-text">
         <svg
           width="90%"

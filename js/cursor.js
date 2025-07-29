@@ -5,24 +5,30 @@
     const cursor = document.querySelector("#custom-cursor");
     let cursorMode = "circle"; // Track cursor mode
 
-    // Set cursor color based on page
+    // Set cursor color and box-shadow based on page
     let pageColor = "#feba17"; // default
+    let pageShadow = "0 0 15px 1px rgba(255, 190, 0, 0.8)"; // default
     const body = document.body;
     if (body.classList.contains("toda-page")) {
-      pageColor = "#002f2f"; // example: Toda page color
+      pageColor = "#ebbb2a";
+      pageShadow = "0 0 24px 4px rgba(235, 187, 42, 0.5)";
     } else if (body.classList.contains("bodySwear")) {
-      pageColor = "#68ff47"; // example: Swear page color
+      pageColor = "#68ff47";
+      pageShadow = "0 0 24px 4px rgba(104, 255, 71, 0.5)";
     } else if (body.classList.contains("bodyIndex")) {
-      pageColor = "#feba17"; // example: Home page color
+      pageColor = "#feba17";
+      pageShadow = "0 0 15px 1px rgba(255, 190, 0, 0.8)";
     }
-    // Set initial cursor color
+    // Set initial cursor color and box-shadow
     cursor.style.backgroundColor = pageColor;
+    cursor.style.boxShadow = pageShadow;
 
     window.addEventListener("mousemove", (e) => {
       if (cursorMode === "circle") {
         cursor.style.left = e.clientX + -12 + "px";
         cursor.style.top = e.clientY + -12 + "px";
         cursor.style.backgroundColor = pageColor;
+        cursor.style.boxShadow = pageShadow;
       } else {
         cursor.style.left = e.clientX + -50 + "px";
         cursor.style.top = e.clientY + -25 + "px";
@@ -39,13 +45,14 @@
             width: 100,
             height: 30,
             borderRadius: "1px",
-            backgroundColor: "#feba17",
+            backgroundColor: pageColor,
             color: "#321400",
             fontSize: "14px",
             fontWeight: 300,
             duration: 0.3,
             ease: "power2.out",
             opacity: 0.7,
+            boxShadow: pageShadow,
           });
           cursor.textContent = "view casefile";
         });
@@ -55,11 +62,12 @@
             width: 24,
             height: 24,
             borderRadius: "50%",
-            backgroundColor: "#feba17",
+            backgroundColor: pageColor,
             fontSize: "0px",
             duration: 0.3,
             opacity: 0.9,
             ease: "power2.out",
+            boxShadow: pageShadow,
           });
           cursor.textContent = "";
         });
@@ -99,13 +107,14 @@
           width: textWidth,
           height: 30,
           borderRadius: "1px",
-          backgroundColor: "#feba17",
+          backgroundColor: pageColor,
           color: "#321400",
           fontSize: "16px",
           fontWeight: 300,
           duration: 0.3,
           ease: "power2.out",
           opacity: 0.9,
+          boxShadow: pageShadow,
         });
         cursor.textContent = text;
       });
@@ -115,11 +124,12 @@
           width: 24,
           height: 24,
           borderRadius: "50%",
-          backgroundColor: "#feba17",
+          backgroundColor: pageColor,
           fontSize: "0px",
           duration: 0.3,
           opacity: 0.9,
           ease: "power2.out",
+          boxShadow: pageShadow,
         });
         cursor.textContent = "";
       });
