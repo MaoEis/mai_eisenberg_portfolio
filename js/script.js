@@ -1,4 +1,51 @@
-// Array of your image paths (update with your actual image filenames)
+window.addEventListener("DOMContentLoaded", () => {
+  const sun = document.querySelector(".sun");
+  if (!sun) return;
+
+  const textContainer = document.createElement("div");
+  textContainer.className = "sun-text";
+  textContainer.textContent = "Stay for a moment,\nbreathe.";
+  sun.appendChild(textContainer);
+
+  // Store timeouts so we can clear them
+  const timeouts = [];
+
+  // Fade in first text
+  timeouts.push(setTimeout(() => {
+    textContainer.style.opacity = 0.8;
+    textContainer.style.transition = "opacity 4s ease-in-out";
+  }, 2200));
+
+  timeouts.push(setTimeout(() => {
+    textContainer.style.opacity = 0;
+    textContainer.style.transition = "opacity 1s ease-in-out";
+  }, 10000));
+
+  timeouts.push(setTimeout(() => {
+    textContainer.style.opacity = 0;
+    setTimeout(() => {
+      textContainer.textContent = "When you're ready,\nscroll down.";
+      textContainer.style.opacity = 0.8;
+    }, 1200);
+  }, 12500));
+
+  timeouts.push(setTimeout(() => {
+    textContainer.style.opacity = 0;
+  }, 17500));
+
+  // Stop animation and hide text when scrolled 150px
+  function stopSunTextOnScroll() {
+    if (window.scrollY > 150) {
+      textContainer.style.opacity = 0;
+      textContainer.style.display = "none";
+      timeouts.forEach(clearTimeout);
+      window.removeEventListener("scroll", stopSunTextOnScroll);
+    }
+  }
+  window.addEventListener("scroll", stopSunTextOnScroll);
+});
+
+// ----- Selfie Slideshow and Sun Pulse Animation -----
 const selfieImages = [
   "./asset/Mai1.jpeg",
   "./asset/Mai2.jpeg",
@@ -9,9 +56,7 @@ const selfieImages = [
   "./asset/Mai7.jpeg",
   "./asset/Mai8.jpeg",
   "./asset/Mai9.jpeg",
-  // Add more if you have more selfies
 ];
-
 let sunSlideshowInterval = null;
 let lastIndex = -1;
 
@@ -24,14 +69,24 @@ function getRandomIndex() {
   return newIndex;
 }
 
+function preloadSelfies() {
+  return Promise.all(
+    selfieImages.map((src) => {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = resolve;
+        img.src = src;
+      });
+    })
+  );
+}
+
 function startSunSlideshow() {
   const sun = document.querySelector(".sun");
   if (!sun) return;
 
-  // Clear existing children
   sun.innerHTML = "";
 
-  // Create two layers
   const base = document.createElement("div");
   const overlay = document.createElement("div");
 
@@ -45,7 +100,10 @@ function startSunSlideshow() {
       background-size: cover;
       background-position: center;
       border-radius: 50%;
-      transition: opacity 1s ease-in-out;
+      will-change: opacity, background-image, transform;
+      transform: translateZ(0);
+      transition: opacity 1.2s cubic-bezier(0.4,0,0.2,1);
+      pointer-events: none;
     `;
     sun.appendChild(el);
   });
@@ -54,41 +112,44 @@ function startSunSlideshow() {
   overlay.style.zIndex = 2;
   overlay.style.opacity = 0;
 
-  // Set initial image
   let currentIndex = getRandomIndex();
   base.style.backgroundImage = `url('${selfieImages[currentIndex]}')`;
 
+  // Pause pulse animation
+  if (sunPulseAnimation) sunPulseAnimation.pause();
+
+  // Change images every 4 seconds
   sunSlideshowInterval = setInterval(() => {
     const nextIndex = getRandomIndex();
     overlay.style.backgroundImage = `url('${selfieImages[nextIndex]}')`;
-    overlay.style.opacity = 1;
+    overlay.style.opacity = 1; // fade in overlay
 
-    // After fade-in, swap images
     setTimeout(() => {
-      base.style.backgroundImage = `url('${selfieImages[nextIndex]}')`;
-      overlay.style.opacity = 0;
-    }, 1000); // Match transition duration
-  }, 3000);
+      base.style.backgroundImage = overlay.style.backgroundImage;
+      overlay.style.opacity = 0; // fade out overlay
+    }, 1200);
+  }, 4000);
 }
 
 function stopSunSlideshow() {
   const sun = document.querySelector(".sun");
   clearInterval(sunSlideshowInterval);
   sunSlideshowInterval = null;
-  if (sun) {
-    sun.innerHTML = "";
-  }
+  if (sun) sun.innerHTML = "";
+
+  // Resume pulse animation
+  if (sunPulseAnimation) sunPulseAnimation.play();
 }
 
-const smileDiv = document.querySelector(".smile");
-if (smileDiv) {
-  smileDiv.addEventListener("mouseenter", () => {
-    startSunSlideshow();
+window.addEventListener("DOMContentLoaded", () => {
+  preloadSelfies().then(() => {
+    const smileDiv = document.querySelector(".smile");
+    if (smileDiv) {
+      smileDiv.addEventListener("mouseenter", startSunSlideshow);
+      smileDiv.addEventListener("mouseleave", stopSunSlideshow);
+    }
   });
-  smileDiv.addEventListener("mouseleave", () => {
-    stopSunSlideshow();
-  });
-}
+});
 
 // ----- gsap animation setup -----
 
@@ -112,7 +173,7 @@ const sunPulseAnimation = gsap.to(".sun", {
   scale: 1.1, // Scales up slightly
   yoyo: true, // Plays forward then reverses
   repeat: -1, // Loops indefinitely
-  duration: 2, // Duration of one full cycle (scale up and down)
+  duration: 4, // Duration of one full cycle (scale up and down)
   ease: "power1.inOut",
 });
 
@@ -123,7 +184,7 @@ const mainScrollTimeline = gsap.timeline({
     trigger: ".container",
     start: "top top", // Main animation sequence starts when container hits top
     // *** MODIFIED END VALUE ***
-    end: "+=2000", // Reduced scroll distance. Adjust this value to control the blank space.
+    end: "+=9000vh", // Reduced scroll distance. Adjust this value to control the blank space.
     scrub: 1, // Smoothly links timeline progress to scroll
     pin: true, // Pins the container while the animations run for better control
     // markers: true, // Uncomment for debugging to see the trigger points
@@ -141,7 +202,7 @@ mainScrollTimeline.fromTo(
         document.querySelector(".text-animation").offsetWidth
       }px`, // End far off-screen left (adjust as needed)
     ease: "none",
-    duration: 10, // Relative duration within the timeline
+    duration: 30, // Relative duration within the timeline
   }
 );
 
@@ -154,7 +215,7 @@ mainScrollTimeline.to(
     duration: 10, // Relative duration within the timeline
     onStart: () => sunPulseAnimation.pause(), // Pause pulse when animation starts
   },
-  ">-0.2" // Starts this tween 0.2 units BEFORE the previous one ends (slight overlap)
+  ">-2" // Starts this tween 0.2 units BEFORE the previous one ends (slight overlap)
 );
 
 const fullText = `My approach is driven by curiosity for people, creativity, and end-to-end systems. I start by listening and uncovering the deeper needs behind a challenge. Then I combine research, storytelling, and iteration to create intuitive, emotionally resonant solutions.`;
@@ -258,14 +319,12 @@ skillsTimeline.fromTo(".devSkills", dev.from, dev.to, "<0.5");
 const soft = getSlideTween(".softSkills", 70);
 skillsTimeline.fromTo(".softSkills", soft.from, soft.to, "<0.5");
 
-
-
 // Loader page logic with ball grow and percentage
 function animateLoaderBall() {
   const loader = document.getElementById("loader-page");
   const ball = loader ? loader.querySelector(".loader-ball") : null;
   const percent = loader ? loader.querySelector(".loader-percent") : null;
-  const nav = document.querySelector(".index-nav");
+  const nav = document.querySelector(".main-nav");
   const smile = document.querySelector(".smile");
   if (!loader || !ball || !percent || !nav || !smile) return;
 
@@ -314,8 +373,8 @@ function animateLoaderBall() {
             duration: 1,
             ease: "power2.out",
           });
-        }, 500);
-      }, 500);
+        }, 4000);
+      }, 4000);
     }
   }, intervalTime);
 }
@@ -324,6 +383,7 @@ window.addEventListener("DOMContentLoaded", animateLoaderBall);
 document.addEventListener("DOMContentLoaded", function () {
   selfieImages.forEach((src) => {
     const img = new Image();
+
     img.src = src;
   });
 });

@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.appendChild(transitionBlock);
 
   // Always ensure nav is visible and fully opaque on page load
-  const nav = document.querySelector(".header-nav, .index-nav");
+  const nav = document.querySelector(".main-nav");
   if (nav) {
     nav.style.opacity = 0;
     nav.style.transform = "translateY(-40px)";

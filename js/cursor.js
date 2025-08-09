@@ -51,7 +51,7 @@
             fontWeight: 300,
             duration: 0.3,
             ease: "power2.out",
-            opacity: 0.7,
+            opacity: 0.9,
             boxShadow: pageShadow,
           });
           cursor.textContent = "view casefile";

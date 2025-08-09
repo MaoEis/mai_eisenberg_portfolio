@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const navLinks = document.querySelectorAll('.header-nav a, .index-nav a');
+  const navLinks = document.querySelectorAll(".main-nav a");
   const sectionMap = [
     { linkClass: "Mai", section: document.querySelector(".sun") },
     {
