@@ -1155,7 +1155,7 @@ main {
 
 @media (max-width: 1024px) {
   .text-animation {
-    display: none;
+    font-size: 2em; /* Adjusted for smaller screens */
   }
   .smile {
     display: none;
@@ -1355,6 +1355,14 @@ main {
 
   /* end mobile index projects */
   /* mobile index contact  */
+
+  textPath {
+    font-size: 1.4em;
+  }
+
+  .contact-text svg{
+    margin: -10px auto;
+  }
 
   .contact-icons {
     top: 45%;

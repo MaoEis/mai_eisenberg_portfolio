@@ -34,7 +34,7 @@
     <nav class="main-nav">
       <ul>
         <li><a href="#intro" class="Mai page-transition-link">Mai</a></li>
-        <li><a href="#portfolio" class="Portfolio page-transition-link">Portfolio</a></li>
+        <li><a href="#portfolio" id="portfolio-nav-link" class="Portfolio page-transition-link">Portfolio</a></li>
         <li><a href="#contact" class="Contact page-transition-link">Contact</a></li>
       </ul>
     </nav>
@@ -208,5 +208,21 @@
     <script src="https://unpkg.com/@phosphor-icons/web@2.0.3" defer></script>
     <script src="./js/pageTransition.js" defer></script>
     <script src="./js/smoothNavScroll.js" defer></script>
+    <script>
+      // Mobile portfolio navigation fix
+      document.addEventListener('DOMContentLoaded', function() {
+        var portfolioLink = document.getElementById('portfolio-nav-link');
+        portfolioLink.addEventListener('click', function(e) {
+          var isMobile = window.matchMedia('(max-width: 900px)').matches;
+          if (isMobile) {
+            e.preventDefault();
+            var mobilePortfolio = document.getElementById('portfolio-mobile');
+            if (mobilePortfolio) {
+              mobilePortfolio.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+        });
+      });
+    </script>
   </body>
 </html>

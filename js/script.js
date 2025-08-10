@@ -40,6 +40,16 @@ window.addEventListener("DOMContentLoaded", () => {
       textContainer.style.display = "none";
       timeouts.forEach(clearTimeout);
       window.removeEventListener("scroll", stopSunTextOnScroll);
+      // Show navigation when scrolled 150px
+      const nav = document.querySelector('.main-nav');
+      if (nav) {
+        gsap.to(nav, {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out"
+        });
+      }
     }
   }
   window.addEventListener("scroll", stopSunTextOnScroll);
