@@ -90,6 +90,8 @@
             text = "+972 55 939 4037";
           } else if (icon.querySelector(".ph-whatsapp-logo")) {
             text = "+324 777 18814";
+          } else if (icon.querySelector(".ph-file-text")) {
+            text = "Resume";
           }
           // Create a hidden span to measure text width
           let measureSpan = document.createElement("span");
@@ -148,8 +150,10 @@
         mutation.addedNodes.forEach((node) => {
           if (
             node.nodeType === 1 && // Element node
-            (node.matches?.('.contact-icons a, .contact-icons-projects a') ||
-              node.querySelector?.('.contact-icons a, .contact-icons-projects a'))
+            (node.matches?.(".contact-icons a, .contact-icons-projects a") ||
+              node.querySelector?.(
+                ".contact-icons a, .contact-icons-projects a"
+              ))
           ) {
             shouldAttach = true;
           }

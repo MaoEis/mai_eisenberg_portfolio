@@ -25,12 +25,6 @@ body {
   color: var(--backG);
 }
 
-.bodyIndex {
-  min-height: 100vh;
-  background-color: var(--backG);
-  color: var(--fontcol);
-}
-
 .circle {
   height: 24px;
   width: 24px;
@@ -113,6 +107,7 @@ body {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  z-index: 1;
 }
 
 .sun {
@@ -120,53 +115,35 @@ body {
   height: 500px;
   background: var(--sun);
   border-radius: 50%;
-  box-shadow: 0 0 200px 50px rgba(255, 190, 0, 0.8);
+  box-shadow: 0 0 120px 40px rgba(255, 190, 0, 0.1),
+    0 0 300px 120px rgba(255, 190, 0, 0.8);
   top: 50vh;
   left: 50vw;
   z-index: 5;
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: pulse 4s ease-in-out infinite;
+  transform-origin: center;
+  will-change: transform;
 }
 
-.sun-text {
-  position: absolute;
-  color: var(--fontcol);
-  font-size: 1.5rem;
-  font-weight: 500;
-  max-width: 400px;
-  text-align: center;
-  opacity: 0;
-  transition: opacity 4s ease-in-out;
-  padding: 0.5em 1em;
-  border-radius: 0.5em;
-  pointer-events: none;
-  white-space: pre-line;
+.sun-wrapper {
+  position: relative;
+  display: inline-block;
+  box-shadow: 0 0 250px 100px rgba(255, 190, 0, 0.5);
+  border-radius: 50%;
+  z-index: 2;
 }
 
-.sun > div {
-  will-change: transform, opacity, background-image;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
-
-.text-animation {
-  font-size: 3em;
-  font-weight: bold;
-  color: var(--fontcol); /* Use the dark color from CSS variables */
-  text-align: center;
-  white-space: nowrap; /* Keep words on one line initially */
-  position: fixed;
-  top: 50vh; /* Center vertically in viewport */
-  left: 0;
-  transform: translateY(-50%); /* Only center vertically */
-  z-index: 10; /* Ensure text is above the sun */
-  transition: none; /* Remove CSS transition, let JS handle it */
-}
-
-.text-animation .word {
-  display: inline-block; /* Allows individual animation */
-  opacity: 1; /* Make words visible for scroll animation */
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
 }
 
 .introApproach {
@@ -315,6 +292,17 @@ body {
   margin: 16px 0 8px 0;
 }
 
+.project-tag {
+  background-color: var(--sun);
+  color: var(--fontcol);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8em;
+  font-weight: 500;
+  display: inline-block;
+  margin: 0px 0 28px 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 /* Loader Styles */
 #loader-page {
   position: fixed;
@@ -556,11 +544,6 @@ svg {
   position: absolute;
   top: 0;
   left: 0;
-}
-
-.container {
-  position: relative;
-  z-index: 1;
 }
 
 /* toda page */
@@ -1153,10 +1136,63 @@ main {
   }
 }
 
-@media (max-width: 1024px) {
-  .text-animation {
-    font-size: 2em; /* Adjusted for smaller screens */
+.scrolling-marquee-bg {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-50%);
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+  height: 7vw;
+  border: none;
+  padding: 0 2vw;
+}
+.scrolling-marquee-track {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  font-size: 5vw;
+  font-weight: 700;
+  color: var(--fontcol);
+  opacity: 0.25;
+  gap: 2vw;
+  border: none;
+  padding: 0 2vw;
+  width: max-content;
+  animation: marquee-scroll 80s linear infinite;
+}
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
   }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.arrow-icon {
+  vertical-align: middle;
+  margin: 0 1vw;
+  width: 32px;
+  height: 32px;
+  opacity: 0.5;
+  animation: marquee-arrow-bounce 4s infinite;
+}
+@keyframes marquee-arrow-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(12px);
+  }
+}
+.marquee-arrow-wrapper {
+  display: inline-block; 
+}
+
+@media (max-width: 1024px) {
   .smile {
     display: none;
   }
@@ -1360,7 +1396,7 @@ main {
     font-size: 1.4em;
   }
 
-  .contact-text svg{
+  .contact-text svg {
     margin: -10px auto;
   }
 
@@ -1566,10 +1602,21 @@ main {
     font-size: 1.2em;
   }
 
+  @keyframes marquee-arrow-bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+  }
+
   .loader-ball.grow {
     width: 300px;
     height: 300px;
     font-size: 2rem;
+  }
+
+  .marquee-arrow-wrapper {
+    display: inline-block;
   }
 
   /* swear page */
