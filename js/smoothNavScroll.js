@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
       linkClass: "Portfolio",
       section: document.querySelector(".project-container"),
     },
+    { linkClass: "Skills", section: document.querySelector(".allSkills") },
     { linkClass: "Contact", section: document.querySelector(".contact") },
   ];
 
@@ -47,6 +48,16 @@ document.addEventListener("DOMContentLoaded", function () {
       setActiveNav("Contact");
     });
   });
+
+  const skills = document.querySelector(".Skills");
+  if (skills) {
+    skills.addEventListener("click", function (e) {
+      e.preventDefault();
+      const section = document.querySelector(".allSkills");
+      if (section) section.scrollIntoView({ behavior: "smooth" });
+      setActiveNav("Skills");
+    });
+  }
 
   // Intersection Observer for scroll-based nav highlighting
   const observerOptions = {
