@@ -71,12 +71,49 @@ document.addEventListener("DOMContentLoaded", () => {
             href !== window.location.pathname
           ) {
             e.preventDefault();
-            if (typeof showTransitionBlock === "function") {
-              showTransitionBlock().then(() => {
+
+            // Check if this is a Skills navigation
+            if (
+              this.classList.contains("Skills") &&
+              href.includes("#allSkills")
+            ) {
+              // Handle Skills navigation with offset
+              if (typeof showTransitionBlock === "function") {
+                showTransitionBlock().then(() => {
+                  // Set flag for Skills navigation with offset
+                  window._skillsScrollOffset = true;
+                  // Navigate to the full URL with hash
+                  window.location.href = href;
+                });
+              } else {
+                window._skillsScrollOffset = true;
                 window.location.href = href;
-              });
+              }
+            } else if (
+              this.classList.contains("Contact") &&
+              href.includes("#contact")
+            ) {
+              // Handle Contact navigation
+              if (typeof showTransitionBlock === "function") {
+                showTransitionBlock().then(() => {
+                  // Set flag for Contact navigation
+                  window._contactScrollOffset = true;
+                  // Navigate to the full URL with hash
+                  window.location.href = href;
+                });
+              } else {
+                window._contactScrollOffset = true;
+                window.location.href = href;
+              }
             } else {
-              window.location.href = href;
+              // Regular page transition without hash
+              if (typeof showTransitionBlock === "function") {
+                showTransitionBlock().then(() => {
+                  window.location.href = href;
+                });
+              } else {
+                window.location.href = href;
+              }
             }
           }
         };

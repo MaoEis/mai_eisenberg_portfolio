@@ -20,18 +20,20 @@
     <main class="main-swear">
       <nav class="main-nav">
         <ul>
-          <li><a href="index.html" class="Mai page-transition-link">Mai</a></li>
+          <li><a href="index.html#intro" class="Mai page-transition-link">Mai</a></li>
           <li>
             <a
-              href="../index.html#portfolio"
+              href="index.html#portfolio"
+              id="portfolio-nav-link"
               class="Portfolio page-transition-link"
               >Portfolio</a
             >
           </li>
           <li>
-            <a href="#contactProjects" class="Contact page-transition-link"
-              >Contact</a
-            >
+            <a href="index.html#allSkills" class="Skills page-transition-link">Skills</a>
+          </li>
+          <li>
+            <a href="index.html#contact" class="Contact page-transition-link">Contact</a>
           </li>
         </ul>
       </nav>
@@ -122,16 +124,6 @@
           </div>
         </div>
     </section>
-  
-    <!-- Contact Section Include -->
-    <div id="contact-placeholder"></div>
-    <script>
-      fetch("contact.html")
-        .then((r) => r.text())
-        .then((t) => {
-          document.getElementById("contact-placeholder").innerHTML = t;
-        });
-    </script>
 
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"

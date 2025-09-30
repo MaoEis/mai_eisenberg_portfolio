@@ -14,13 +14,13 @@ document.addEventListener("DOMContentLoaded", function () {
       subtitle: "Three.js project showcasing a 3D website.",
       page: "../swear.html",
     },
-    // {
-    //   key: "italian-kiosk",
-    //   title: "Italian Kiosk",
-    //   img: "../asset/TodaLogo2.png",
-    //   subtitle: "Italian food kiosk branding.",
-    //   page: "../toda.html",
-    // },
+    {
+      key: "Acsi",
+      title: "Acsi Rebranding",
+      img: "../asset/projectImageAcsi.png",
+      subtitle: "Rebranding of Acsi, a campguide.",
+      page: "../acsi.html",
+    },
     // {
     //   key: "dino-ghost-peppers",
     //   title: "Dino Ghost Peppers",

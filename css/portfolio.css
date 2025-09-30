@@ -20,6 +20,11 @@ body {
   font-family: "Raleway", sans-serif;
 }
 
+html {
+  background: var(--backG);
+  color: var(--fontcol);
+}
+
 ::selection {
   background: var(--accentcol);
   color: var(--backG);
@@ -150,7 +155,10 @@ body {
   position: relative; /* Keep relative if you want to position children normally */
   width: 100%;
   height: 0; /* This makes it a full viewport section */
-  background: var(--sun); /* Background will be sun color after sun expands */
+  background: var(
+    --sun
+  ); /* Background will be sun color after sun
+  ); /* Background will be sun color after sun expands */
   color: var(--fontcol);
   font-size: 2em;
   text-align: center;
@@ -181,40 +189,100 @@ body {
   cursor: default;
 }
 
-/* skills section */
-
+/* --- Skills Section with Bottom-to-Center Animation --- */
 .allSkills {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  background: none;
   position: relative;
-  height: 60vh;
-  overflow: hidden;
-  font-size: 3em;
-  color: var(--fontcol);
-  padding: 40px 0 0 0;
-  margin-bottom: -50px;
+  z-index: 10;
 }
 
-.skills {
-  position: absolute;
-  white-space: nowrap;
+.skills-blocks {
+  display: flex;
+  flex-direction: row;
+  gap: 48px;
+  width: 100%;
+  max-width: 1200px;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+}
+
+.skills-block {
+  border: 4px solid rgba(254, 185, 23, 1);
+  border-radius: 24px;
+  box-shadow: 4px 4px 18px rgba(254, 185, 23, 0.1);
+  padding: 36px 32px 28px 32px;
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  will-change: transform, opacity;
+  min-width: 280px;
+  max-width: 350px;
+  height: 550px;
+  background: rgba(248, 244, 225, 0.9);
+}
+
+/* Initial position for animation - start from bottom of screen */
+.designSkills,
+.devSkills,
+.softSkills {
+  transform: translateY(100vh);
+  opacity: 0;
 }
 
 .skill-title {
-  color: var(--accentcol); /* Uses the cyan color from your CSS variables */
-  font-weight: 300;
-  padding-right: 50px;
+  font-size: 1.3em;
+  font-weight: 700;
+  color: var(--fontcol);
+  margin-bottom: 24px;
+  letter-spacing: 0.01em;
 }
 
-.designSkills {
-  top: 20%;
-}
-.devSkills {
-  top: 40%;
-}
-.softSkills {
-  top: 60%;
+.skill-summary {
+  font-size: 1em;
+  color: var(--fontcol, #321400);
+  font-weight: 400;
+  line-height: 1.5;
+  width: 100%;
 }
 
-/* Project  */
+.skill-summary-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.skill-summary-list li {
+  list-style: none;
+  width: 100%;
+  margin: 0 0 0.3em 0;
+  padding: 0.4em 0.8em;
+  font-size: 1em;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.skill-summary-list li:nth-child(even) {
+  background-color: rgba(254, 186, 23, 0);
+}
+
+.skill-summary-list li:nth-child(odd) {
+  background-color: rgba(254, 186, 23, 0.1);
+}
+
+.skill-summary-list li:hover {
+  color: var(--accentcol);
+  font-weight: bold;
+}
 
 .mobile-index-projects-section {
   display: none;
@@ -360,7 +428,7 @@ body {
   width: 80vw;
   height: auto;
   max-width: 1100px;
-  max-height: 700px;
+  max-height: 650px;
   aspect-ratio: 1 / 1;
   margin: auto;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
@@ -397,6 +465,7 @@ body {
   padding-top: 2vh;
   cursor: default;
 }
+
 svg {
   display: block;
   margin: 0 auto 24px auto;
@@ -407,7 +476,7 @@ svg {
 
 .contact-written-email {
   position: absolute;
-  bottom: 4%;
+  bottom: 8%;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -423,7 +492,7 @@ svg {
 .contact-written-email-projects a {
   color: var(--fontcol);
   text-decoration: none;
-  font-size: 5vw;
+  font-size: 4.5vw;
   font-weight: 900;
   transition: color 0.3s ease;
 }
@@ -437,7 +506,7 @@ svg {
 
 .contact-icons {
   position: absolute;
-  top: 60%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
@@ -640,8 +709,7 @@ main {
 .todaFavIconTitle,
 .todaButtonStateTitle,
 .todaMoodboardTitle,
-.todaMockUpTitle,
-.todaMoreProjectsTitle {
+.todaMockUpTitle {
   font-size: 2em;
   font-weight: 400;
 }
@@ -943,10 +1011,12 @@ main {
 .todaMoreProjects {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 50px 0;
-  height: 100vh;
+  justify-content: space-between;
+  align-self: center;
+  width: 1050px;
+  margin: auto;
+  gap: auto;
+  padding: 160px 0;
 }
 
 .moreProjects {
@@ -1189,7 +1259,124 @@ main {
   }
 }
 .marquee-arrow-wrapper {
-  display: inline-block; 
+  display: inline-block;
+}
+
+.main-acsi {
+  background-color: var(--backG);
+  color: #17160f;
+  font-family: "Raleway", sans-serif;
+}
+.acsi-pp-title {
+  font-weight: 800;
+  color: var(--fontcol);
+  text-align: center;
+  padding: 100px 0px;
+  font-size: 4em;
+  align-self: center;
+  text-align: center;
+}
+
+.acsi-pp-logo {
+  width: 1050px;
+  height: auto;
+  margin: auto;
+  align-self: center;
+  display: block;
+}
+
+.acsi-pp-caseStudy {
+  max-width: 1050px;
+  margin: auto;
+  align-self: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: start;
+  gap: 80px;
+  padding: 80px 0;
+}
+
+.acsi-pp-caseStudy-overview {
+  width: 100%;
+}
+
+.acsi-pp-general {
+  font-size: 1em;
+  color: var(--fontcol);
+  margin-bottom: 40px;
+}
+
+.acsi-pp-brief {
+  font-size: 1em;
+  color: var(--fontcol);
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 16px;
+}
+
+.acsi-pp-problem-title,
+.acsi-pp-solution-title {
+  font-size: 1.2em;
+  font-weight: 700;
+  color: var(--fontcol);
+  margin-bottom: 8px;
+}
+.acsi-pp-problem {
+  width: 100%;
+}
+
+.acsi-pp-solution {
+  width: 100%;
+}
+
+.acsi-pp-before-image {
+  width: 100%;
+  height: auto;
+}
+
+.acsi-pp-caseStudy-title,
+.acsi-pp-before-title,
+.acsi-pp-after-title,
+.todaMoreProjectsTitle {
+  font-size: 2em;
+  font-weight: 700;
+  color: var(--fontcol);
+  margin-bottom: 16px;
+}
+
+.acsi-pp-mockups {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 40px;
+  max-width: 1050px;
+  margin: auto;
+  align-self: center;
+}
+
+.acsi-pp-billboard {
+  width: 100%;
+  height: 70vh;
+  object-fit: cover;
+}
+
+.acsi-pp-cc-mug,
+.acsi-pp-book-stationery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  gap: 20px;
+}
+
+.acsi-pp-cc,
+.acsi-pp-mug,
+.acsi-pp-book,
+.acsi-pp-stationery {
+  width: 100%;
+  height: auto;
 }
 
 @media (max-width: 1024px) {
@@ -1217,8 +1404,20 @@ main {
     object-fit: cover;
     transition: transform 0.3s ease-in-out;
   }
+
   .allSkills {
-    display: none;
+    height: auto;
+    padding: 60px 20px;
+  }
+
+  .skills-blocks {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .skills-block {
+    max-width: none;
+    min-width: auto;
   }
 
   .projectContainerOne {

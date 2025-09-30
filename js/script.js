@@ -222,43 +222,55 @@ function setupGSAPAnimations() {
     });
   });
 
-  // Skills section
+  // Skills section - animate from bottom to center sequentially, hold, then scroll up
   const skillsTimeline = gsap.timeline({
     scrollTrigger: {
       trigger: ".allSkills",
       start: "top top",
-      end: "+=4500",
+      end: "+=2500",
       scrub: 1,
       invalidateOnRefresh: true,
-      pin: true,
+      pin: true, // Pin the section during animation
     },
   });
-  function vw(v) {
-    return window.innerWidth * (v / 100);
-  }
-  function getSlideTween(selector, startVW) {
-    const startX = vw(startVW);
-    const el = $(selector);
-    const endX = startX - el.offsetWidth;
-    return { from: { x: startX }, to: { x: endX, ease: "none", duration: 3 } };
-  }
+
+  // Phase 1: Animate first skill block from bottom to center height
   skillsTimeline.fromTo(
     ".designSkills",
-    getSlideTween(".designSkills", 50).from,
-    getSlideTween(".designSkills", 50).to
+    { y: "100vh", opacity: 0 },
+    { y: "0vh", opacity: 1, duration: 1.5, ease: "power2.out" }
   );
+
+  // Phase 2: Animate second skill block from bottom to center height
   skillsTimeline.fromTo(
     ".devSkills",
-    getSlideTween(".devSkills", 60).from,
-    getSlideTween(".devSkills", 60).to,
-    "<0.5"
+    { y: "100vh", opacity: 0 },
+    { y: "0vh", opacity: 1, duration: 1.5, ease: "power2.out" },
+    "-=0.2" // Slight overlap with previous animation
   );
+
+  // Phase 3: Animate third skill block from bottom to center height
   skillsTimeline.fromTo(
     ".softSkills",
-    getSlideTween(".softSkills", 70).from,
-    getSlideTween(".softSkills", 70).to,
-    "<0.5"
+    { y: "100vh", opacity: 0 },
+    { y: "0vh", opacity: 1, duration: 1.5, ease: "power2.out" },
+    "-=0.2" // Slight overlap with previous animation
   );
+
+  // Phase 4: Hold all blocks in center position (3 seconds of scroll time)
+  skillsTimeline.to([".designSkills", ".devSkills", ".softSkills"], {
+    y: "0vh",
+    duration: 1,
+    ease: "none",
+  });
+
+  // Phase 5: All blocks scroll up and out of view together
+  skillsTimeline.to([".designSkills", ".devSkills", ".softSkills"], {
+    y: "-100vh",
+    opacity: 0.5,
+    duration: 1.5,
+    ease: "power2.in",
+  });
 }
 // --- Main Init ---
 document.addEventListener("DOMContentLoaded", () => {

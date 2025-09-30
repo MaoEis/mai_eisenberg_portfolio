@@ -16,6 +16,62 @@ document.addEventListener("DOMContentLoaded", function () {
     if (activeLink) activeLink.classList.add("active");
   }
 
+  // Check if we need to scroll to Skills with offset (from other pages)
+  function checkSkillsNavigation() {
+    const urlHash = window.location.hash;
+    const skillsScrollFlag = window._skillsScrollOffset;
+
+    if (
+      (urlHash === "#allSkills" || skillsScrollFlag) &&
+      document.querySelector(".allSkills")
+    ) {
+      // Clear the flag
+      window._skillsScrollOffset = false;
+
+      // Wait a moment for page to fully load, then scroll with offset
+      setTimeout(() => {
+        const section = document.querySelector(".allSkills");
+        if (section) {
+          const sectionTop =
+            section.getBoundingClientRect().top + window.pageYOffset;
+          window.scrollTo({
+            top: sectionTop + 1460, // Use full offset when coming from other pages
+            behavior: "smooth",
+          });
+          setActiveNav("Skills");
+        }
+      }, 500); // Delay to ensure page is fully loaded
+    }
+  }
+
+  // Check if we need to scroll to Contact (from other pages)
+  function checkContactNavigation() {
+    const urlHash = window.location.hash;
+    const contactScrollFlag = window._contactScrollOffset;
+
+    if (
+      (urlHash === "#contact" || contactScrollFlag) &&
+      document.querySelector(".contact")
+    ) {
+      // Clear the flag
+      window._contactScrollOffset = false;
+
+      // Wait a moment for page to fully load, then scroll to contact
+      setTimeout(() => {
+        const section = document.querySelector(".contact");
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+          setActiveNav("Contact");
+        }
+      }, 500); // Delay to ensure page is fully loaded
+    }
+  }
+
+  // Check for Skills navigation on page load
+  checkSkillsNavigation();
+  // Check for Contact navigation on page load
+  checkContactNavigation();
+
   // Click logic
   const mai = document.querySelector(".Mai");
   if (mai) {
@@ -54,7 +110,21 @@ document.addEventListener("DOMContentLoaded", function () {
     skills.addEventListener("click", function (e) {
       e.preventDefault();
       const section = document.querySelector(".allSkills");
-      if (section) section.scrollIntoView({ behavior: "smooth" });
+      if (section) {
+        const currentScrollY = window.pageYOffset;
+        const sectionTop = section.getBoundingClientRect().top + currentScrollY;
+        let offset;
+        if (currentScrollY > sectionTop) {
+          offset = -500;
+        } else {
+          offset = 1460;
+        }
+
+        window.scrollTo({
+          top: sectionTop + offset,
+          behavior: "smooth",
+        });
+      }
       setActiveNav("Skills");
     });
   }
